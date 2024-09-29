@@ -2,30 +2,25 @@ package com.sui.usercenter;
 
 import com.sui.usercenter.mapper.UserMapper;
 import com.sui.usercenter.model.User;
-
 import jakarta.annotation.Resource;
 import org.junit.Assert;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import org.junit.runner.RunWith;
 
 import java.util.List;
 
-
-@SpringBootTest
-//@RunWith(SpringRunner.class)
-public class SampleTest {
+@SpringBootTest(classes = UserCenterApplication.class)
+class UserCenterApplicationTests {
 
     @Resource
     private UserMapper userMapper;
 
     @Test
-    public void testSelect() {
+    void contextLoads() {
         System.out.println(("----- selectAll method test ------"));
-        List<User> userList = userMapper.selectList(null);
-        Assert.assertEquals("用户列表大小应该为5", 5, userList.size());
-        userList.forEach(System.out::println);
+        List<User> userList = userMapper.selectList(null); //查询所有用户
+        Assert.assertEquals(5, userList.size()); //断言查询结果数量为5
+        userList.forEach(System.out::println); //打印查询结果
     }
+
 }
